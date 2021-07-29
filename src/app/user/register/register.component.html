@@ -1,1 +1,33 @@
-<p>register works!</p>
+<section id="register">
+    <div class="register-container">
+        <div class="heading-text-register">
+            <h1>Create a New Account!</h1>
+        </div>
+        <div class="register-form">
+            <form>
+                <div class="inputHolder-register">
+                    <label>E-Mail Address:<input type="text" name="email" placeholder="Email address"></label>
+                </div>
+
+                <div class="inputHolder-register">
+                    <label>Username:<input type="text" name="username" placeholder="Username"></label>
+                </div>
+
+                <div class="inputHolder-register">
+                    <label>Password:<input type="password" name="password" placeholder="Password"></label>
+                </div>
+
+                <div class="inputHolder-register">
+                    <label>Confirm Password:<input type="password" name="repassword" placeholder="Confirm Password"></label>
+                </div>
+
+                <div class="inputHolder-register">
+                    <button class="submitBtn" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+        <div class="alreadyuser-text">
+            <span>Already have an account? Please <a routerLink="/login">sign in</a></span>
+        </div>
+    </div>
+</section>

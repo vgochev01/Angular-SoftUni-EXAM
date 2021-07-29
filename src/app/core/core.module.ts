@@ -18,8 +18,7 @@ import { UserRoutingModule } from '../user/user-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    UserRoutingModule
+    AppRoutingModule
   ],
   exports: [
     HeaderComponent,
