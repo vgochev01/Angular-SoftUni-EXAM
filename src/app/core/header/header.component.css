@@ -1,0 +1,66 @@
+/* HEADER & NAVIGATION */
+
+#navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 75px;
+    width: 100vw;
+  }
+  
+  .navbar{
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(65, 65, 65, 0.5);
+    position: fixed;
+    color: white;
+  }
+  
+  .nav-items {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    right: 50px;
+  }
+  
+  .nav-item {
+    display: inline-block;
+  }
+  
+  .nav-item a {
+    padding: 22px 22px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .nav-item a:hover {
+    background: rgb(108, 108, 108);
+    border-bottom: 0.5px solid white;
+  }
+  
+  .nav-site-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 100%;
+  }
+  
+  .nav-site-name span {
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    font-family: "Montserrat", sans-serif;
+    cursor: default;
+  }
+  
+  .fa-hotel {
+    font-size: 26px;
+    margin-right: 12px;
+  }
