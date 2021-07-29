@@ -4,6 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { AppRoutingModule } from '../app-routing.module';
+import { UserRoutingModule } from '../user/user-routing.module';
 
 
 
@@ -15,7 +17,9 @@ import { AboutComponent } from './about/about.component';
     AboutComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule,
+    UserRoutingModule
   ],
   exports: [
     HeaderComponent,
