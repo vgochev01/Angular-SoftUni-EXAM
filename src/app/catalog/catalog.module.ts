@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HotelsComponent } from './hotels/hotels.component';
 import { HotelComponent } from './hotel/hotel.component';
+import { RouterModule } from '@angular/router';
+import { HotelsRoutingModule } from './hotels-routing.module';
 
 
 
@@ -11,7 +13,8 @@ import { HotelComponent } from './hotel/hotel.component';
     HotelComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HotelsRoutingModule
   ],
   exports: [
     HotelsComponent,
