@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { UserRoutingModule } from '../user/user-routing.module';
+import { HotelsRoutingModule } from '../catalog/hotels-routing.module';
 
 
 
