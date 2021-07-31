@@ -4,6 +4,7 @@ import { HotelsComponent } from './hotels/hotels.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { RouterModule } from '@angular/router';
 import { HotelsRoutingModule } from './hotels-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,7 +15,8 @@ import { HotelsRoutingModule } from './hotels-routing.module';
   ],
   imports: [
     CommonModule,
-    HotelsRoutingModule
+    HotelsRoutingModule,
+    SharedModule
   ],
   exports: [
     HotelsComponent,

@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CatalogModule } from './catalog/catalog.module';
-import { HotelsRoutingModule } from './catalog/hotels-routing.module';
 import { CoreModule } from './core/core.module';
+import { ContentService } from './services/content.service';
 import { UserRoutingModule } from './user/user-routing.module';
 import { UserModule } from './user/user.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { UserModule } from './user/user.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     CoreModule,
     UserModule,
     CatalogModule,
+    SharedModule,
     UserRoutingModule
   ],
-  providers: [],
+  providers: [ContentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
