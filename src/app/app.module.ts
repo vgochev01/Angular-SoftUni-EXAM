@@ -10,6 +10,7 @@ import { ContentService } from './services/content.service';
 import { UserRoutingModule } from './user/user-routing.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+    ReactiveFormsModule,
     CoreModule,
     UserModule,
     CatalogModule,
     SharedModule,
+    AppRoutingModule,
     UserRoutingModule
   ],
   providers: [ContentService],

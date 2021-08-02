@@ -102,6 +102,7 @@ section#home {
   .why-us-list {
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
