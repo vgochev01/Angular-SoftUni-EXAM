@@ -3,14 +3,20 @@
         <div class="heading-text-login">
             <h1>Sign In to Use Our Services!</h1>
         </div>
+        <div *ngIf="submitted && loginForm.invalid" class="errors">
+            <span *ngIf="loginForm.get('email')!.errors?.required">Email is required!</span>
+            <span *ngIf="loginForm.get('email')!.errors?.email">Please enter a valid email!</span>
+            <span *ngIf="loginForm.get('password')!.errors?.required">Password is required!</span>
+            <span *ngIf="loginForm.get('password')!.errors?.minlength">Password must be at least 6 characters long!</span>
+        </div>
         <div class="login-form">
-            <form>
+            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
                 <div class="inputHolder-login">
-                    <label>E-Mail Address:<input type="text" name="email" placeholder="Email address"></label>
+                    <label>E-Mail Address:<input type="text" name="email" placeholder="Email address" formControlName="email"></label>
                 </div>
 
                 <div class="inputHolder-login">
-                    <label>Password:<input type="password" name="password" placeholder="Password"></label>
+                    <label>Password:<input type="password" name="password" placeholder="Password" formControlName="password"></label>
                 </div>
 
                 <div class="inputHolder-login">

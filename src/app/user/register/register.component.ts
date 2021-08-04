@@ -31,9 +31,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.submitted = true;
     if(this.registerForm.invalid){
       setTimeout(() => this.submitted = false, 2000)
+      return;
     }
     console.log(this.registerForm.value);
-    console.log(localStorage);
   }
 
 }

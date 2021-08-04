@@ -9,9 +9,9 @@
             <span *ngIf="registerForm.get('username')!.errors?.required">Username is required!</span>
             <span *ngIf="registerForm.get('username')!.errors?.minlength">Username must be at least 4 characters long!</span>
             <span *ngIf="registerForm.get('password')!.errors?.required">Password is required!</span>
-            <span *ngIf="registerForm.get('password')!.errors?.minLength">Password must be at least 6 characters long!</span>
+            <span *ngIf="registerForm.get('password')!.errors?.minlength">Password must be at least 6 characters long!</span>
             <span *ngIf="registerForm.get('repeatPassword')!.errors?.required">Confirm Password is required!</span>
-            <span *ngIf="registerForm.get('repeatPassword')!.errors?.minLength">Confirm Password must be at least 6 characters long!</span>
+            <span *ngIf="registerForm.get('repeatPassword')!.errors?.minlength">Confirm Password must be at least 6 characters long!</span>
             <span *ngIf="registerForm.get('repeatPassword')!.errors?.passMatch">Passwords don't match!</span>
         </div>
         <div class="register-form">
