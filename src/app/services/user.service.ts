@@ -17,21 +17,30 @@ export class UserService {
     return this.user != undefined;
   }
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(data: { email: string, password: string}) {
     return this.http.post<IUser>(`${apiUrl}/users/login`, data).pipe(
-      tap(user => this.user = user);
+      tap(user =>  {
+        this.user = user;
+        localStorage.setItem('<USER>', JSON.stringify(this.user));
+      })
     );
   }
 
   register(data: { email: string, username: string, password: string }){
     return this.http.post<IUser>(`${apiUrl}/users/register`, data).pipe(
-      tap(user => this.user = user);
+      tap(user => {
+        this.user = user;
+        localStorage.setItem('<USER>', JSON.stringify(this.user));
+      })
     );
   }
 
   logout() {
-    return this.http.get(`${apiUrl}/users/logout`);
+    localStorage.clear();
+    return this.http.get(`${apiUrl}/users/logout`).pipe(
+      tap(() => this.user = undefined)
+    );
   }
 }

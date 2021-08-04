@@ -3,7 +3,7 @@
         <div class="heading-text-register">
             <h1>Create a New Account!</h1>
         </div>
-        <div *ngIf="submitted && registerForm.invalid" class="errors">
+        <div *ngIf="submitted && (registerForm.invalid || serverErr)" class="errors">
             <span *ngIf="registerForm.get('email')!.errors?.required">Email is required!</span>
             <span *ngIf="registerForm.get('email')!.errors?.email">Please enter a valid email!</span>
             <span *ngIf="registerForm.get('username')!.errors?.required">Username is required!</span>
@@ -13,6 +13,7 @@
             <span *ngIf="registerForm.get('repeatPassword')!.errors?.required">Confirm Password is required!</span>
             <span *ngIf="registerForm.get('repeatPassword')!.errors?.minlength">Confirm Password must be at least 6 characters long!</span>
             <span *ngIf="registerForm.get('repeatPassword')!.errors?.passMatch">Passwords don't match!</span>
+            <span *ngIf="serverErr">{{serverErr}}</span>
         </div>
         <div class="register-form">
             <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">

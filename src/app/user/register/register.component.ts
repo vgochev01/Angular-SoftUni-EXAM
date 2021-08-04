@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { fromEvent } from 'rxjs';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 import { passMatchingFactory } from './passwords-match.directive';
 
 @Component({
@@ -11,8 +12,13 @@ import { passMatchingFactory } from './passwords-match.directive';
 export class RegisterComponent implements OnInit, OnDestroy {
   submitted: boolean = false;
   registerForm!: FormGroup;
+  serverErr: string | undefined = undefined;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+    ) { 
   }
 
   ngOnInit() {
@@ -33,7 +39,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
       setTimeout(() => this.submitted = false, 2000)
       return;
     }
-    console.log(this.registerForm.value);
+    this.userService.register(this.registerForm.value).subscribe({
+      next: () => {
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.serverErr = err.error.message;
+        setTimeout(() => this.serverErr = undefined, 2000);
+      }
+    })
   }
 
 }

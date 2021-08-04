@@ -3,11 +3,12 @@
         <div class="heading-text-login">
             <h1>Sign In to Use Our Services!</h1>
         </div>
-        <div *ngIf="submitted && loginForm.invalid" class="errors">
+        <div *ngIf="submitted && (loginForm.invalid || serverErr)"  class="errors">
             <span *ngIf="loginForm.get('email')!.errors?.required">Email is required!</span>
             <span *ngIf="loginForm.get('email')!.errors?.email">Please enter a valid email!</span>
             <span *ngIf="loginForm.get('password')!.errors?.required">Password is required!</span>
             <span *ngIf="loginForm.get('password')!.errors?.minlength">Password must be at least 6 characters long!</span>
+            <span *ngIf="serverErr">{{serverErr}}</span>
         </div>
         <div class="login-form">
             <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">

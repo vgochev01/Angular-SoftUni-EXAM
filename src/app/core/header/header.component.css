@@ -64,3 +64,7 @@
     font-size: 26px;
     margin-right: 12px;
   }
+
+  .logoutBtn {
+    cursor: pointer;
+  }

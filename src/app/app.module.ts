@@ -11,6 +11,7 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     UserRoutingModule
   ],
-  providers: [ContentService],
+  providers: [ContentService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
