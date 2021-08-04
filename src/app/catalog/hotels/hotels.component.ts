@@ -14,7 +14,7 @@ export class HotelsComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotels(), 2000);
+    setTimeout(() => this.fetchHotels(), 555);
   }
 
   fetchHotels(): void {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IHotel } from 'src/app/shared/interfaces';
@@ -19,11 +19,12 @@ export class HotelComponent implements OnInit {
   constructor(
     private contentService: ContentService,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotel(), 2000);
+    setTimeout(() => this.fetchHotel(), 555);
     this.isLogged = this.userService.isLogged;
   }
 
@@ -38,6 +39,7 @@ export class HotelComponent implements OnInit {
       },
       error: (err) => {
         console.error(err.message);
+        this.router.navigate(['/home']);
       }
     });
   }

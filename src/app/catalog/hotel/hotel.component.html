@@ -33,9 +33,9 @@
                         </div>
                         <div class="book">
                             <span *ngIf="isLogged && hasBooked">You have already booked a room in this hotel!</span>
-                            <span *ngIf="!isLogged" class="notLogged">Please <a href="/login">sign in</a> to book a room in this hotel!</span>
+                            <span *ngIf="!isLogged">Please <a class="notLogged" routerLink="/login">sign in</a> to book a room in this hotel!</span>
                             <button *ngIf="isLogged && !hasBooked && !isOwner" class="bookBtn">Book a Room!</button>
-                            <span *ngIf="isLogged && isOwner"><a href="javascript:void(0)">Who has booked a room in my hotel?</a></span>
+                            <a class="whoBooked" *ngIf="isLogged && isOwner" href="javascript:void(0)">Who has booked a room in my hotel?</a>
                         </div>
                     </div>
                 </div>

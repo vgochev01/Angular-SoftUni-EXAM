@@ -187,12 +187,6 @@ section#details .details-info-container {
   letter-spacing: 0.5px;
 }
 
-.notLogged a {
-  text-decoration: none;
-  color: rgb(255, 112, 112);
-  font-weight: bold;
-}
-
 .bookBtn {
   padding: 12px 40px;
   font-size: large;
@@ -215,7 +209,12 @@ section#details button:active {
   transform: translateY(3px);
 }
 
-.book a {
+.notLogged {
+  text-decoration: none;
+  color: rgb(242, 86, 86);
+}
+
+.whoBooked {
   text-decoration: none;
   padding: 11px 18px;
   background: rgb(255, 112, 112);
@@ -224,7 +223,7 @@ section#details button:active {
   letter-spacing: 0.5px;
 }
 
-.book a:hover {
+.whoBooked:hover {
   filter: brightness(0.95);
 }
 
