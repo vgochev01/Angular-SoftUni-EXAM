@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
+import { AuthActivate } from '../guards/auth.guard';
 import { HotelComponent } from './hotel/hotel.component';
 import { HotelsComponent } from './hotels/hotels.component';
 
