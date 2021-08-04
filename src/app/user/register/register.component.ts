@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordsMatchValidation } from './passwords-match.directive';
+import { fromEvent } from 'rxjs';
+import { passMatchingFactory } from './passwords-match.directive';
 
 @Component({
   selector: 'app-register',
@@ -8,19 +9,19 @@ import { passwordsMatchValidation } from './passwords-match.directive';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-
   submitted: boolean = false;
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { 
+  }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: ['', [Validators.required, Validators.minLength(6)]]
-    }, { validator: passwordsMatchValidation });
+      repeatPassword: ['', [Validators.required, Validators.minLength(6), passMatchingFactory(() => this.registerForm?.get('password')!)]]
+    });
   }
 
   ngOnDestroy() {
@@ -28,6 +29,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.submitted = true;
+    if(this.registerForm.invalid){
+      setTimeout(() => this.submitted = false, 2000)
+    }
+    console.log(this.registerForm.value);
+    console.log(localStorage);
   }
 
 }

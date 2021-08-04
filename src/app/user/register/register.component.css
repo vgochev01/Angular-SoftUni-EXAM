@@ -113,5 +113,11 @@ input.ng-valid {
 }
 
 .errors span {
+  display: none;
+  transition: 1s ease-out;
+}
+
+.errors span:nth-of-type(1) {
   display: block;
+  transition: 1s ease-in;
 }

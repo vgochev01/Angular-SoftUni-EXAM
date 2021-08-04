@@ -1,11 +1,22 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl, ValidationErrors } from "@angular/forms";
+import { Subscription } from "rxjs";
 
-export const passwordsMatchValidation = (control: AbstractControl) => {
-  const pass = control.get('password');
-  const repass = control.get('repeatPassword');
-  if(pass && repass && (pass.value != repass.value)) {
-    repass.setErrors({ passDontMatch: true });
-  } else {
-    repass?.setErrors(null);
+export function passMatchingFactory(getPassControl: () => AbstractControl | null){
+  let subscription: Subscription | null = null;
+  return (control: AbstractControl): ValidationErrors | null => {
+    const passControl = getPassControl();
+    if(!passControl) { return null; }
+    subscription = passControl.valueChanges.subscribe({
+      next: () => {
+        control.updateValueAndValidity();
+      },
+      complete: () => {
+        subscription?.unsubscribe();
+        subscription = null;
+      }
+    })
+    const passValue = passControl.value;
+    const repassValue = control.value;
+    return passValue == repassValue ? null : { passMatch: true };
   }
 }

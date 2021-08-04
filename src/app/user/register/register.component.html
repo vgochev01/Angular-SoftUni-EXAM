@@ -4,14 +4,15 @@
             <h1>Create a New Account!</h1>
         </div>
         <div *ngIf="submitted && registerForm.invalid" class="errors">
-            <span *ngIf="this.registerForm.get('email')!.errors?.required">Email is required!</span>
-            <span *ngIf="this.registerForm.get('username')!.errors?.required">Username is required!</span>
-            <span *ngIf="this.registerForm.get('username')!.errors?.minlength">Username must be at least 4 characters long!</span>
-            <span *ngIf="this.registerForm.get('password')!.errors?.required">Password is required!</span>
-            <span *ngIf="this.registerForm.get('password')!.errors?.minLength">Password must be at least 6 characters long!</span>
-            <span *ngIf="this.registerForm.get('repeatPassword')!.errors?.required">Confirm Password is required!</span>
-            <span *ngIf="this.registerForm.get('repeatPassword')!.errors?.minLength">Confirm Password must be at least 6 characters long!</span>
-            <span *ngIf="this.registerForm.get('repeatPassword')!.errors?.passDontMatch">Passwords don't match!</span>
+            <span *ngIf="registerForm.get('email')!.errors?.required">Email is required!</span>
+            <span *ngIf="registerForm.get('email')!.errors?.email">Please enter a valid email!</span>
+            <span *ngIf="registerForm.get('username')!.errors?.required">Username is required!</span>
+            <span *ngIf="registerForm.get('username')!.errors?.minlength">Username must be at least 4 characters long!</span>
+            <span *ngIf="registerForm.get('password')!.errors?.required">Password is required!</span>
+            <span *ngIf="registerForm.get('password')!.errors?.minLength">Password must be at least 6 characters long!</span>
+            <span *ngIf="registerForm.get('repeatPassword')!.errors?.required">Confirm Password is required!</span>
+            <span *ngIf="registerForm.get('repeatPassword')!.errors?.minLength">Confirm Password must be at least 6 characters long!</span>
+            <span *ngIf="registerForm.get('repeatPassword')!.errors?.passMatch">Passwords don't match!</span>
         </div>
         <div class="register-form">
             <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
