@@ -7,7 +7,13 @@ export interface IHotel {
     destination: string;
     imageUrl: string;
     freeRooms: number,
-    owner: string;
+    owner: {
+        _id: string;
+        username: string;
+        email: string;
+        __v: number;
+    };
     __v: number;
-    price: number
+    price: number;
+    _ownerId: string;
 }

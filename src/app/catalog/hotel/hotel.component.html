@@ -1,1 +1,45 @@
-<p>hotel works!</p>
+<section id="details">
+    <div class="details-container">
+
+        <div class="loading-hotel" *ngIf="!hotel">
+            <app-loader></app-loader>
+        </div>
+
+        <ng-container *ngIf="hotel">
+            <div class="heading-text-details">
+                <h1>{{hotel!.name}}</h1>
+                <span><i class="fas fa-map-marker-alt hotel-dest-icon"></i>{{hotel!.destination}}</span>
+            </div>
+    
+            <div class="hotel-details">
+                <div class="hotel-img-container">
+                    <img [src]="hotel!.imageUrl" alt="Hotel">
+                </div>
+    
+                <div class="details-info-container">
+                    <div class="details-info">
+                        <div class="description">{{hotel!.description}}</div>
+                        <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel!.freeRooms}}) Free Rooms</span>
+                        <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel!.reviews.length}}) Reviews</span>
+                        <div class="owner-controls" *ngIf="isLogged && isOwner">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+                    <div class="booking-container">
+                        <div class="price">
+                            <h1><i class="fas fa-dollar-sign"></i>{{hotel!.price}}</h1>
+                            <span>Price per night</span>
+                        </div>
+                        <div class="book">
+                            <span *ngIf="isLogged && hasBooked">You have already booked a room in this hotel!</span>
+                            <span *ngIf="!isLogged" class="notLogged">Please <a href="/login">sign in</a> to book a room in this hotel!</span>
+                            <button *ngIf="isLogged && !hasBooked && !isOwner" class="bookBtn">Book a Room!</button>
+                            <span *ngIf="isLogged && isOwner"><a href="javascript:void(0)">Who has booked a room in my hotel?</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</section>
