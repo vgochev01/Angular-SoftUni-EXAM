@@ -1,0 +1,40 @@
+<section id="create">
+    <div class="create-container">
+        <div class="heading-text-create">
+            <h1>Create an offer for your hotel!</h1>
+            <span><i class="far fa-check-circle free-icon"></i> Completely free</span>
+        </div>
+
+        <div class="create-form-container">
+            <form>
+                <div class="inputHolder">
+                    <label>Hotel Name:<input formControlName="name" type="text" name="name" placeholder="Your Hotel's Name"></label>
+                </div>
+
+                <div class="inputHolder">
+                    <label>Hotel Destination:<input formControlName="destination" type="text" name="destination" placeholder="City, Country etc"></label>
+                </div>
+
+                <div class="inputHolder">
+                    <label>Description:<textarea name="description" placeholder="Hotel Description"></textarea></label>
+                </div>
+
+                <div class="inputHolder">
+                    <label>Image URL:<input formControlName="imageUrl" type="text" name="imageUrl" placeholder="https://..."></label>
+                </div>
+
+                <div class="inputHolder">
+                    <label>Free Rooms:<input formControlName="freeRooms" type="number" name="freeRooms" placeholder="How many free rooms does your hotel have?"></label>
+                </div>
+
+                <div class="inputHolder">
+                    <label>Price per night:<input formControlName="price" type="number" name="price" placeholder="USD"></label>
+                </div>
+
+                <div class="inputHolder">
+                    <button class="submitBtn" type="submit">Create Offer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

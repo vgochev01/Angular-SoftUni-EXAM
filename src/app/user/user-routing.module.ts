@@ -9,8 +9,7 @@ const routes: Routes = [
         component: LoginComponent,
         canActivate: [AuthActivate],
         data: {
-            authRequired: false,
-            authRedirectUrl: '/'
+            authRequired: false
         }
     },
     {
@@ -18,8 +17,7 @@ const routes: Routes = [
         component: RegisterComponent,
         canActivate: [AuthActivate],
         data: {
-            authRequired: false,
-            authRedirectUrl: '/'
+            authRequired: false
         }
     }
 ];

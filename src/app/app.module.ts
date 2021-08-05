@@ -13,6 +13,8 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { AuthActivate } from './guards/auth.guard';
+import { OwnerActivate } from './guards/owner.guard';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,10 +28,9 @@ import { AuthActivate } from './guards/auth.guard';
     UserModule,
     CatalogModule,
     SharedModule,
-    AppRoutingModule,
-    UserRoutingModule
+    RouterModule
   ],
-  providers: [ContentService, UserService, AuthActivate],
+  providers: [ContentService, UserService, AuthActivate, OwnerActivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

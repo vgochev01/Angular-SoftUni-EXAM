@@ -5,13 +5,15 @@ import { HotelComponent } from './hotel/hotel.component';
 import { RouterModule } from '@angular/router';
 import { HotelsRoutingModule } from './hotels-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { CreateComponent } from './create/create.component';
 
 
 
 @NgModule({
   declarations: [
     HotelsComponent,
-    HotelComponent
+    HotelComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     HotelsComponent,
-    HotelComponent
+    HotelComponent,
+    CreateComponent
   ]
 })
 export class CatalogModule { }

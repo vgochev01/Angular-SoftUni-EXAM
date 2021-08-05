@@ -23,7 +23,9 @@ import { HotelsRoutingModule } from '../catalog/hotels-routing.module';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    AboutComponent
   ]
 })
 export class CoreModule { }

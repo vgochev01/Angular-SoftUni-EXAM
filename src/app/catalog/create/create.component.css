@@ -1,0 +1,163 @@
+/* HOTEL DETAILS VIEW */
+
+section#create {
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.create-container {
+  width: 85%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+  background: rgba(65, 65, 65, 0.3);
+  box-shadow: 0px 5px 14px 4px rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.create-form-container {
+  width: 60%;
+  height: 100%;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(206, 188, 188, 0.1);
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+form input {
+  /* cursor: pointer; */
+  margin: 0;
+  margin-top: 5px;
+  outline: none;
+  padding: 20px;
+  font-size: medium;
+  width: 400px;
+}
+
+form textarea {
+  margin: 0;
+  margin-top: 5px;
+  outline: none;
+  padding: 20px;
+  font-size: medium;
+  width: 400px;
+  height: 110px;
+}
+
+.inputHolder {
+  margin: 10px 0;
+}
+
+.inputHolder label {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+}
+
+.inputHolder:nth-child(1) {
+    margin-top: 30px;
+}
+
+.inputHolder:nth-last-child(1) {
+    margin-bottom: 30px;
+}
+
+.submitBtn {
+  margin-top: 10px;
+  padding: 20px 60px;
+  font-size: large;
+  font-family: "Montserrat", sans-serif;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: rgb(239, 104, 104);
+  box-shadow: 2px 9px 19px -6px #000000;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.submitBtn:hover {
+  filter: brightness(95%);
+}
+
+.submitBtn:active {
+  transform: translateY(3px);
+}
+
+.heading-text-create {
+  font-size: xx-large;
+  font-style: italic;
+  margin: 20px 0;
+  color: rgba(245, 245, 245, 0.811);
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading-text-create span {
+  margin-top: 10px;
+  font-style: normal;
+  font-family: "Open Sans", sans-serif;
+  font-size: large;
+  letter-spacing: 1px;
+}
+
+.free-icon {
+  color: rgb(252, 106, 106);
+  font-weight: bolder;
+}
+
+.hotel-dest-icon {
+  font-size: 24px;
+  color: rgb(252, 106, 106);
+  margin-right: 5px;
+}
+
+.hotel-rooms-icon {
+  font-size: 24px;
+  color: rgb(252, 106, 106);
+  margin-right: 5px;
+}
+
+.bookBtn {
+  padding: 12px 40px;
+  font-size: large;
+  outline: none;
+  border: none;
+  background: rgb(252, 106, 106);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 9px 19px -6px #000000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bookBtn:hover {
+  background: rgb(242, 86, 86);
+}
+
+section#create button:active {
+  transform: translateY(3px);
+}
