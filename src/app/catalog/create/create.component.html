@@ -5,8 +5,22 @@
             <span><i class="far fa-check-circle free-icon"></i> Completely free</span>
         </div>
 
+        <div *ngIf="submitted && (createForm.invalid || serverErr)" class="errors">
+            <span *ngIf="createForm.get('name')!.errors?.required">Hotel Name is required!</span>
+            <span *ngIf="createForm.get('name')!.errors?.minlength">Hotel Name must be at least 4 characters!</span>
+            <span *ngIf="createForm.get('destination')!.errors?.required">Hotel Destination is required!</span>
+            <span *ngIf="createForm.get('description')!.errors?.required">Hotel Description is required!</span>
+            <span *ngIf="createForm.get('description')!.errors?.minlength">Description must be at least 10 characters long!</span>
+            <span *ngIf="createForm.get('imageUrl')!.errors?.required">Image URL is required!</span>
+            <span *ngIf="createForm.get('imageUrl')!.errors?.validUrl">Please enter a valid Image URL!</span>
+            <span *ngIf="createForm.get('freeRooms')!.errors?.required">Free Rooms count is required!</span>
+            <span *ngIf="createForm.get('price')!.errors?.required">Price is required!</span>
+            <span *ngIf="createForm.get('price')!.errors?.min">Price must be a positive number!</span>
+            <span *ngIf="serverErr">{{serverErr}}</span>
+        </div>
+
         <div class="create-form-container">
-            <form>
+            <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
                 <div class="inputHolder">
                     <label>Hotel Name:<input formControlName="name" type="text" name="name" placeholder="Your Hotel's Name"></label>
                 </div>
@@ -16,7 +30,7 @@
                 </div>
 
                 <div class="inputHolder">
-                    <label>Description:<textarea name="description" placeholder="Hotel Description"></textarea></label>
+                    <label>Description:<textarea formControlName="description" name="description" placeholder="Hotel Description"></textarea></label>
                 </div>
 
                 <div class="inputHolder">
