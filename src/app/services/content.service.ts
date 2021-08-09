@@ -19,10 +19,6 @@ export class ContentService {
   }
 
   createHotel(data: IHotel) {
-    return this.http.post<IHotel>(`${apiUrl}/data/catalog`, data, {
-      headers: {
-        'x-authorization': JSON.parse(localStorage.getItem('<USER>')).accessToken
-      }
-    });
+    return this.http.post<IHotel>(`${apiUrl}/data/catalog`, data);
   }
 }

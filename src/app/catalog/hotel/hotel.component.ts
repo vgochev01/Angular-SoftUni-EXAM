@@ -31,7 +31,6 @@ export class HotelComponent implements OnInit {
   fetchHotel(): void {
     this.hotel = undefined;
     const { id } = this.activatedRoute.snapshot.params;
-    console.log(id);
     this.contentService.fetchHotelById(id).subscribe({
       next: (hotel) => {
         this.hotel = hotel;
