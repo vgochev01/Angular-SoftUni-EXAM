@@ -17,4 +17,12 @@ export class ContentService {
   fetchHotelById(id: string) {
     return this.http.get<IHotel>(`${apiUrl}/data/catalog/${id}`);
   }
+
+  createHotel(data: IHotel) {
+    return this.http.post<IHotel>(`${apiUrl}/data/catalog`, data, {
+      headers: {
+        'x-authorization': JSON.parse(localStorage.getItem('<USER>')).accessToken
+      }
+    });
+  }
 }
