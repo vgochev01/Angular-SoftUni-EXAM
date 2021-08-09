@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
-import { AuthActivate } from '../guards/auth.guard';
 import { OwnerActivate } from '../guards/owner.guard';
-import { CreateComponent } from './create/create.component';
+import { EditComponent } from './edit/edit.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { HotelsComponent } from './hotels/hotels.component';
 
@@ -16,7 +15,11 @@ const routes: Routes = [
             },
             {
                 path: ':id',
-                component: HotelComponent,
+                component: HotelComponent
+            },
+            {
+                path: 'edit/:id',
+                component: EditComponent,
                 canActivate: [OwnerActivate]
             }
         ]

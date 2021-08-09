@@ -5,7 +5,6 @@ import { Observable } from "rxjs";
 Injectable();
 export class AppInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('in interceptor');
         const userLocalStorage = localStorage.getItem('<USER>');
         if(userLocalStorage){
             const token = JSON.parse(userLocalStorage).accessToken;

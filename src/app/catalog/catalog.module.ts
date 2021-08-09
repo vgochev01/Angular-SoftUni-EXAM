@@ -7,6 +7,7 @@ import { HotelsRoutingModule } from './hotels-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditComponent } from './edit/edit.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HotelsComponent,
     HotelComponent,
-    CreateComponent
+    CreateComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,

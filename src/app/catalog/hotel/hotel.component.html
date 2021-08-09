@@ -22,7 +22,7 @@
                         <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel!.freeRooms}}) Free Rooms</span>
                         <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel!.reviews.length}}) Reviews</span>
                         <div class="owner-controls" *ngIf="isLogged && isOwner">
-                            <button>Edit</button>
+                            <button routerLink="/hotels/edit/{{hotel._id}}">Edit</button>
                             <button>Delete</button>
                         </div>
                     </div>
