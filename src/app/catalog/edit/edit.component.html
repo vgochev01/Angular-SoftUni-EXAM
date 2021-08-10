@@ -1,1 +1,57 @@
-<p>edit works!</p>
+<section id="edit">
+    <div class="edit-container">
+        <div class="heading-text-edit">
+            <h1>Edit your hotel offer details!</h1>
+            <span><i class="far fa-check-circle free-icon"></i> Completely free</span>
+        </div>
+
+        <ng-container *ngIf="(editForm$ | async) as editForm">
+            <div *ngIf="submitted && (editForm.invalid || serverErr)" class="errors">
+                <span *ngIf="editForm.get('name')!.errors?.required">Hotel Name is required!</span>
+                <span *ngIf="editForm.get('name')!.errors?.minlength">Hotel Name must be at least 4 characters!</span>
+                <span *ngIf="editForm.get('destination')!.errors?.required">Hotel Destination is required!</span>
+                <span *ngIf="editForm.get('description')!.errors?.required">Hotel Description is required!</span>
+                <span *ngIf="editForm.get('description')!.errors?.minlength">Description must be at least 10 characters long!</span>
+                <span *ngIf="editForm.get('imageUrl')!.errors?.required">Image URL is required!</span>
+                <span *ngIf="editForm.get('imageUrl')!.errors?.validUrl">Please enter a valid Image URL!</span>
+                <span *ngIf="editForm.get('freeRooms')!.errors?.required">Free Rooms count is required!</span>
+                <span *ngIf="editForm.get('price')!.errors?.required">Price is required!</span>
+                <span *ngIf="editForm.get('price')!.errors?.min">Price must be a positive number!</span>
+                <span *ngIf="serverErr">{{serverErr}}</span>
+            </div>
+    
+            <div class="edit-form-container">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm)">
+                    <div class="inputHolder">
+                        <label>Hotel Name:<input formControlName="name" type="text" name="name" placeholder="Your Hotel's Name"></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <label>Hotel Destination:<input formControlName="destination" type="text" name="destination" placeholder="City, Country etc"></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <label>Description:<textarea formControlName="description" name="description" placeholder="Hotel Description"></textarea></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <label>Image URL:<input formControlName="imageUrl" type="text" name="imageUrl" placeholder="https://..."></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <label>Free Rooms:<input formControlName="freeRooms" type="number" name="freeRooms" placeholder="How many free rooms does your hotel have?"></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <label>Price per night:<input formControlName="price" type="number" name="price" placeholder="USD"></label>
+                    </div>
+    
+                    <div class="inputHolder">
+                        <button class="submitBtn" type="submit">Edit Offer</button>
+                    </div>
+                </form>
+            </div>
+        </ng-container>
+        
+    </div>
+</section>

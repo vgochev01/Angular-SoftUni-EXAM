@@ -21,4 +21,8 @@ export class ContentService {
   createHotel(data: IHotel) {
     return this.http.post<IHotel>(`${apiUrl}/data/catalog`, data);
   }
+
+  editHotel(id: string, data: IHotel) {
+    return this.http.put<IHotel>(`${apiUrl}/data/catalog/${id}`, data);
+  }
 }
