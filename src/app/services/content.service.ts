@@ -25,4 +25,8 @@ export class ContentService {
   editHotel(id: string, data: IHotel) {
     return this.http.put<IHotel>(`${apiUrl}/data/catalog/${id}`, data);
   }
+
+  deleteHotel(id: string) {
+    return this.http.delete<IHotel>(`${apiUrl}/data/catalog/${id}`);
+  }
 }

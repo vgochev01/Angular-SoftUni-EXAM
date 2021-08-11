@@ -4,7 +4,6 @@
             <h1>Edit your hotel offer details!</h1>
             <span><i class="far fa-check-circle free-icon"></i> Completely free</span>
         </div>
-
         <ng-container *ngIf="(editForm$ | async) as editForm">
             <div *ngIf="submitted && (editForm.invalid || serverErr)" class="errors">
                 <span *ngIf="editForm.get('name')!.errors?.required">Hotel Name is required!</span>

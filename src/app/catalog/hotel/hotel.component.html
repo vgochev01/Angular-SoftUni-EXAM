@@ -1,9 +1,11 @@
+<app-delete-modal [hotelId]="hotel?._id" (hideDialog)="showDelete(false)" *ngIf="showDeleteDialog"></app-delete-modal>
 <section id="details">
     <div class="details-container">
 
         <div class="loading-hotel" *ngIf="!hotel">
             <app-loader></app-loader>
         </div>
+
 
         <ng-container *ngIf="hotel">
             <div class="heading-text-details">
@@ -23,7 +25,7 @@
                         <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel!.reviews.length}}) Reviews</span>
                         <div class="owner-controls" *ngIf="isLogged && isOwner">
                             <button [routerLink]="['/hotels', 'edit', hotel._id]">Edit</button>
-                            <button>Delete</button>
+                            <button (click)="showDelete(true)">Delete</button>
                         </div>
                     </div>
                     <div class="booking-container">

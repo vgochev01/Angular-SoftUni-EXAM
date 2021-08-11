@@ -15,6 +15,7 @@ export class HotelComponent implements OnInit {
   isOwner: boolean = false;
   hasBooked: boolean = false;
   isLogged: boolean = false;
+  showDeleteDialog: boolean = false;
 
   constructor(
     private contentService: ContentService,
@@ -41,6 +42,10 @@ export class HotelComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     });
+  }
+
+  showDelete(show: boolean): void {
+    this.showDeleteDialog = show;
   }
 
 }

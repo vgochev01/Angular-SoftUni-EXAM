@@ -30,7 +30,7 @@ export class CreateComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(10)]],
       imageUrl: ['', [Validators.required, ValidUrlValidate]],
       freeRooms: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.min(1)]]
+      price: ['', [Validators.required, Validators.min(10)]]
     });
   }
 
