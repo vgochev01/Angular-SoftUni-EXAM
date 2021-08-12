@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { ReviewsComponent } from './hotel/reviews/reviews.component';
 
 
 
@@ -16,7 +17,8 @@ import { EditComponent } from './edit/edit.component';
     HotelsComponent,
     HotelComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    ReviewsComponent
   ],
   imports: [
     CommonModule,

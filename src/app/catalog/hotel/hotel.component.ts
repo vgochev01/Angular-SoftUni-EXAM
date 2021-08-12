@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
-import { IHotel } from 'src/app/shared/interfaces';
+import { IHotel, IReview } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-hotel',
@@ -14,8 +14,8 @@ export class HotelComponent implements OnInit {
   hotel: IHotel | undefined;
   isOwner: boolean = false;
   hasBooked: boolean = false;
-  isLogged: boolean = false;
-  showDeleteDialog: boolean = true;
+  showDeleteDialog: boolean = false;
+  reviews: IReview[] | undefined;
 
   constructor(
     private contentService: ContentService,
@@ -25,8 +25,11 @@ export class HotelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotel(), 555);
-    this.isLogged = this.userService.isLogged;
+    setTimeout(() => this.fetchHotel(), 0);
+  }
+
+  get isLogged(): boolean {
+    return this.userService.isLogged;
   }
 
   fetchHotel(): void {
@@ -35,6 +38,7 @@ export class HotelComponent implements OnInit {
     this.contentService.fetchHotelById(id).subscribe({
       next: (hotel) => {
         this.hotel = hotel;
+        this.reviews = hotel.reviews;
         this.isOwner = this.userService.user?._id == this.hotel._ownerId;
       },
       error: (err) => {

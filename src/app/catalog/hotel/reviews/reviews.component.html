@@ -1,0 +1,52 @@
+<ng-container *ngIf="isLogged">
+  <div class="write-review-text">
+    <h1>Write a review about this hotel!</h1>
+  </div>
+  <div class="review-form-container">
+    <div class="review-form">
+      <form [formGroup]="reviewsForm!" (ngSubmit)="onSubmit()">
+        <div class="errors" *ngIf="submitted && reviewsForm?.invalid">
+          <span>Title and content are required!</span>
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input
+            formControlName="title"
+            type="text"
+            name="title"
+            placeholder="Review Title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="content">Content:</label>
+          <textarea
+            formControlName="content"
+            name="content"
+            placeholder="What do you think..?"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <button class="submitBtn" type="submit">Post Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<div class="write-review-text" *ngIf="!isLogged">
+  <span>You must be signed in to write a review!</span>
+</div>
+
+<div class="reviews">
+  <div class="no-reviews" *ngIf="reviews?.length == 0">
+    <span>This hotel has no reviews yet.</span>
+  </div>
+
+  <div class="review" *ngFor="let review of reviews">
+    <span class="review-title"
+      ><i class="fas fa-star hotel-reviews-icon"></i>{{ review.title }}</span
+    >
+    <p class="review-content">{{ review.content }}</p>
+    <span class="review-author">- {{ review.owner.username }}</span>
+  </div>
+</div>
