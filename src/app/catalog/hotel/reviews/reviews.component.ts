@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IReview } from 'src/app/shared/interfaces';
@@ -9,16 +11,18 @@ import { IReview } from 'src/app/shared/interfaces';
   templateUrl: './reviews.component.html',
   styleUrls: ['./reviews.component.css']
 })
-export class ReviewsComponent {
+export class ReviewsComponent implements OnDestroy {
 
   @Input() reviews: IReview[] | undefined = [];
   reviewsForm: FormGroup | null;
   submitted: boolean = false;
-  
+  subscription$: Subscription | null = null;
+
   constructor(
     private userService: UserService,
     private contentService: ContentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
   ) {
     this.reviewsForm = this.fb.group({
       title: ['', Validators.required],
@@ -34,7 +38,23 @@ export class ReviewsComponent {
     this.submitted = true;
     setTimeout(() => this.submitted = false, 2000);
     if(this.reviewsForm?.valid){
+      const { id } = this.activatedRoute.snapshot.params;
+      this.subscription$ = this.contentService.postReview(id, this.reviewsForm.value).subscribe({
+        next: (updatedHotel) => {
+          console.log(updatedHotel);
+          this.reviews = updatedHotel.reviews;
+          this.submitted = false;
+          this.reviewsForm?.reset();
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription$?.unsubscribe();
   }
 
 }

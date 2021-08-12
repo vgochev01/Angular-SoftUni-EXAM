@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IHotel } from '../shared/interfaces';
+import { IHotel, IReview } from '../shared/interfaces';
 
 const apiUrl = environment.apiUrl;
 
@@ -28,5 +28,9 @@ export class ContentService {
 
   deleteHotel(id: string) {
     return this.http.delete<IHotel>(`${apiUrl}/data/catalog/${id}`);
+  }
+
+  postReview(id: string, data: IReview) {
+    return this.http.post<IHotel>(`${apiUrl}/data/catalog/${id}/reviews`, data);
   }
 }
