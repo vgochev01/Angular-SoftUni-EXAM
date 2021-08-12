@@ -15,7 +15,7 @@ export class HotelComponent implements OnInit {
   isOwner: boolean = false;
   hasBooked: boolean = false;
   isLogged: boolean = false;
-  showDeleteDialog: boolean = false;
+  showDeleteDialog: boolean = true;
 
   constructor(
     private contentService: ContentService,
