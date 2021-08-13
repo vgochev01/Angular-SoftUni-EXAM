@@ -34,9 +34,9 @@
                             <span>Price per night</span>
                         </div>
                         <div class="book">
-                            <span *ngIf="isLogged && hasBooked">You have already booked a room in this hotel!</span>
+                            <span *ngIf="isLogged && hasBooked">You have booked a room in this hotel!</span>
                             <span *ngIf="!isLogged">Please <a class="notLogged" routerLink="/login">sign in</a> to book a room in this hotel!</span>
-                            <button *ngIf="isLogged && !hasBooked && !isOwner" class="bookBtn">Book a Room!</button>
+                            <button (click)="bookRoom()" *ngIf="isLogged && !hasBooked && !isOwner" class="bookBtn">Book a Room!</button>
                             <a class="whoBooked" *ngIf="isLogged && isOwner" href="javascript:void(0)">Who has booked a room in my hotel?</a>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="reviews-container">
-                <app-reviews [reviews]="hotel.reviews"></app-reviews>
+                <app-reviews (updateHotel)="updateHotel($event)" [reviews]="hotel.reviews"></app-reviews>
             </div>
         </ng-container>
     </div>

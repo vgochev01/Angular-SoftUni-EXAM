@@ -1,10 +1,10 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
-import { IReview } from 'src/app/shared/interfaces';
+import { IHotel, IReview } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-reviews',
@@ -14,6 +14,7 @@ import { IReview } from 'src/app/shared/interfaces';
 export class ReviewsComponent implements OnDestroy {
 
   @Input() reviews: IReview[] | undefined = [];
+  @Output() updateHotel: EventEmitter<IHotel> = new EventEmitter();
   reviewsForm: FormGroup | null;
   submitted: boolean = false;
   subscription$: Subscription | null = null;
@@ -41,7 +42,7 @@ export class ReviewsComponent implements OnDestroy {
       const { id } = this.activatedRoute.snapshot.params;
       this.subscription$ = this.contentService.postReview(id, this.reviewsForm.value).subscribe({
         next: (updatedHotel) => {
-          console.log(updatedHotel);
+          this.updateHotel.emit(updatedHotel);
           this.reviews = updatedHotel.reviews;
           this.submitted = false;
           this.reviewsForm?.reset();

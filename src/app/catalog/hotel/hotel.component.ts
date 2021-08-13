@@ -13,7 +13,6 @@ export class HotelComponent implements OnInit {
 
   hotel: IHotel | undefined;
   isOwner: boolean = false;
-  hasBooked: boolean = false;
   showDeleteDialog: boolean = false;
   reviews: IReview[] | undefined;
 
@@ -32,6 +31,10 @@ export class HotelComponent implements OnInit {
     return this.userService.isLogged;
   }
 
+  get hasBooked(): boolean {
+    return this.hotel!.usersBooked.includes(this.userService.user?._id);
+  }
+
   fetchHotel(): void {
     this.hotel = undefined;
     const { id } = this.activatedRoute.snapshot.params;
@@ -48,8 +51,24 @@ export class HotelComponent implements OnInit {
     });
   }
 
+  bookRoom(): void {
+    this.contentService.bookRoom(this.hotel!._id).subscribe({
+      next: (updatedHotel) => {
+        this.hotel = updatedHotel;
+        console.log('Successfuly booked a room!');
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+
   showDelete(show: boolean): void {
     this.showDeleteDialog = show;
+  }
+
+  updateHotel(data: IHotel) {
+    this.hotel = data;
   }
 
 }

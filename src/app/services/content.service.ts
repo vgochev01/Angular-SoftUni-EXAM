@@ -33,4 +33,8 @@ export class ContentService {
   postReview(id: string, data: IReview) {
     return this.http.post<IHotel>(`${apiUrl}/data/catalog/${id}/reviews`, data);
   }
+
+  bookRoom(id: string) {
+    return this.http.post<IHotel>(`${apiUrl}/data/catalog/${id}/book`, {});
+  }
 }
