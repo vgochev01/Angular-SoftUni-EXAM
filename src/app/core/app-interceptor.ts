@@ -1,6 +1,9 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+
+const apiUrl = environment.apiUrl;
 
 Injectable();
 export class AppInterceptor implements HttpInterceptor {
@@ -13,7 +16,8 @@ export class AppInterceptor implements HttpInterceptor {
             });
 
             return next.handle(req.clone({
-                headers
+                headers,
+                url: req.url.replace('api', apiUrl)
             }))
         }
         return next.handle(req);

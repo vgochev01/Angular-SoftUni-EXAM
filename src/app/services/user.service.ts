@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { IUser } from '../shared/interfaces/user';
 import { tap } from 'rxjs/operators'
 
-const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +18,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   login(data: { email: string, password: string}) {
-    return this.http.post<IUser>(`${apiUrl}/users/login`, data).pipe(
+    return this.http.post<IUser>(`api/users/login`, data).pipe(
       tap(user =>  {
         this.user = user;
         localStorage.setItem('<USER>', JSON.stringify(this.user));
@@ -29,7 +27,7 @@ export class UserService {
   }
 
   register(data: { email: string, username: string, password: string }){
-    return this.http.post<IUser>(`${apiUrl}/users/register`, data).pipe(
+    return this.http.post<IUser>(`api/users/register`, data).pipe(
       tap(user => {
         this.user = user;
         localStorage.setItem('<USER>', JSON.stringify(this.user));
@@ -39,7 +37,7 @@ export class UserService {
 
   logout() {
     localStorage.clear();
-    return this.http.get(`${apiUrl}/users/logout`).pipe(
+    return this.http.get(`api/users/logout`).pipe(
       tap(() => this.user = undefined)
     );
   }
