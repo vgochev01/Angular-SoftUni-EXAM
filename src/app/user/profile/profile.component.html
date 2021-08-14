@@ -1,0 +1,50 @@
+<section id="profile">
+    <div class="profile-container">
+        <div class="heading-text-profile">
+            <h1>{{user?.username}}'s Profile</h1>
+            <span>Here you can see your offers and profile details!</span>
+        </div>
+
+        <!-- ERRORS -->
+        <div *ngIf="submitted && editProfileForm.invalid"  class="errors">
+            <span *ngIf="editProfileForm.get('email')!.errors?.required">Email is required!</span>
+            <span *ngIf="editProfileForm.get('email')!.errors?.email">Please enter a valid email!</span>
+            <span *ngIf="editProfileForm.get('username')!.errors?.required">Username is required!</span>
+            <span *ngIf="editProfileForm.get('username')!.errors?.minlength">Username must be at least 4 characters long!</span>
+        </div>
+
+        <div class="editprofile-form">
+            <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+                <div class="inputHolder-profile">
+                    <label>E-Mail Address:<input type="text" name="email" formControlName="email"></label>
+                </div>
+
+                <div class="inputHolder-profile">
+                    <label>Username:<input type="text" name="username" formControlName="username"></label>
+                </div>
+
+                <div class="inputHolder-profile">
+                    <button class="submitBtn" type="submit">Edit Profile</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="hotels-profile" *ngIf="hotels">
+            <div class="hotel" *ngFor="let hotel of hotels">
+                <div class="hotel-img-container">
+                    <img src="{{hotel.imageUrl}}" alt="Hotel">
+                </div>
+                <div class="hotel-info-container">
+                    <span><h1 class="hotel-name">{{hotel.name}}</h1></span>
+                    <span><i class="fas fa-map-marker-alt hotel-dest-icon"></i>{{hotel.destination}}</span>
+                    <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel.freeRooms}}) Free Rooms</span>
+                    <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel.reviews.length}}) Reviews</span>
+                </div>
+                <div class="hotel-price-container">
+                    <span class="hotel-price"><i class="fas fa-dollar-sign"></i>{{hotel.price}} per night</span>
+                    <span><button [routerLink]="['/hotels', hotel._id]" class="details-btn">Details</button></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

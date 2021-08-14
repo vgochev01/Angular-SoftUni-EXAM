@@ -41,4 +41,13 @@ export class UserService {
       tap(() => this.user = undefined)
     );
   }
+
+  editProfile(data: { email: string, username: string }) {
+    return this.http.post<IUser>(`api/users/editProfile`, data).pipe(
+      tap(updatedUser => {
+        this.user = updatedUser;
+        localStorage.setItem('<USER>', JSON.stringify(this.user));
+      })
+    );
+  }
 }
