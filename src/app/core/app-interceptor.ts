@@ -9,6 +9,7 @@ Injectable();
 export class AppInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const userLocalStorage = localStorage.getItem('<USER>');
+        const url = req.url.replace('api', apiUrl);
         if(userLocalStorage){
             const token = JSON.parse(userLocalStorage).accessToken;
             const headers: HttpHeaders = new HttpHeaders({
@@ -17,10 +18,12 @@ export class AppInterceptor implements HttpInterceptor {
 
             return next.handle(req.clone({
                 headers,
-                url: req.url.replace('api', apiUrl)
+                url
             }))
         }
-        return next.handle(req);
+        return next.handle(req.clone({
+            url
+        }));
     }
 
 }
