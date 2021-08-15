@@ -7,6 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { UserRoutingModule } from '../user/user-routing.module';
 import { HotelsRoutingModule } from '../catalog/hotels-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { HotelsRoutingModule } from '../catalog/hotels-routing.module';
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,

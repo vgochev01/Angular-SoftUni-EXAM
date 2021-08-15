@@ -3,11 +3,13 @@
         <div class="heading-text">
             <h1>Book beyond your wildest means!</h1>
         </div>
+        <span class="error" *ngIf="submitted && searchForm.invalid">Destination field is required!</span>
         <div class="book-form">
-            <form>
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            
                 <div class="inputHolder">
                     <i class="fas fa-map-marker-alt inputIcon"></i>
-                    <input type="text" class="cityInput" placeholder="Where do you want to go?">
+                    <input type="text" class="cityInput" name="searchedDest" formControlName="searchedDest"  placeholder="Where do you want to go?">
                 </div>
 
                 <div class="inputHolder">

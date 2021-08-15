@@ -8,8 +8,14 @@ export class ContentService {
 
   constructor(private http: HttpClient) { }
 
-  fetchHotels(userId: string | undefined = undefined) {
-    const query = userId ? `?owner=${userId}` : '';
+  fetchHotels(searchedDest: string | undefined = undefined, userId: string | undefined = undefined) {
+    let query = '?';
+    if(searchedDest){
+      query += `dest=${searchedDest}`;
+    }
+    if(userId) {
+      query += `owner=${userId}`;
+    }
     return this.http.get<IHotel[]>(`api/data/catalog${query}`);
   }
 

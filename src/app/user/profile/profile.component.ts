@@ -36,8 +36,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       username: [this.user.username, [Validators.required, Validators.minLength(4)]]
     })
 
-    this.hotels$ = this.contentService.fetchHotels(this.user._id).pipe(
-      delay(750)
+    this.hotels$ = this.contentService.fetchHotels(undefined, this.user._id).pipe(
+      delay(500)
     );
 
   }

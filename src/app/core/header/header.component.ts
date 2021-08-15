@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-header',

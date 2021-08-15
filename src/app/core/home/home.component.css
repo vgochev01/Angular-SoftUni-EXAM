@@ -119,3 +119,12 @@ section#home {
     color: rgb(252, 106, 106);
     font-weight: bold;
   }
+
+  .error {
+    margin-top: 15px;
+    margin-bottom: -35px;
+    padding: 8px 16px;
+    background: rgb(213, 79, 79);
+    color: white;
+    border-radius: 7px;
+  }
