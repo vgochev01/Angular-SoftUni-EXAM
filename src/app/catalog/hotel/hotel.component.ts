@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IHotel, IReview, IUser } from 'src/app/shared/interfaces';
@@ -28,7 +29,7 @@ export class HotelComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotel(), 500);
+    this.fetchHotel();
   }
 
   ngOnDestroy(): void {
@@ -50,7 +51,9 @@ export class HotelComponent implements OnInit, OnDestroy {
   fetchHotel(): void {
     this.hotel = undefined;
     const { id } = this.activatedRoute.snapshot.params;
-    this.hotelsub$ = this.contentService.fetchHotelById(id).subscribe({
+    this.hotelsub$ = this.contentService.fetchHotelById(id).pipe(
+      delay(500)
+    ).subscribe({
       next: (hotel) => {
         this.hotel = hotel;
         this.reviews = hotel.reviews;

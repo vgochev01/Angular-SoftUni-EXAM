@@ -5,9 +5,11 @@
             <span>Explore our hotels catalog</span>
         </div>
 
-        <app-loader *ngIf="!hotels$"></app-loader>
+        <ng-template #loading>
+            <app-loader></app-loader>
+        </ng-template>
         
-        <ng-container *ngIf="(hotels$ | async) as hotels">
+        <ng-container *ngIf="(hotels$ | async) as hotels; else loading">
             <app-loader *ngIf="hotels.length == 0"></app-loader>
 
             <div class="hotels-catalog" *ngIf="hotels.length > 0">

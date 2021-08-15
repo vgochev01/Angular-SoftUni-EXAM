@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ContentService } from 'src/app/services/content.service';
 import { IHotel } from 'src/app/shared/interfaces';
 
@@ -15,11 +16,13 @@ export class HotelsComponent implements OnInit {
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotels(), 500);
+    this.fetchHotels();
   }
 
   fetchHotels() {
-    this.hotels$ = this.contentService.fetchHotels();
+    this.hotels$ = this.contentService.fetchHotels().pipe(
+      delay(500)
+    );
   }
 
 }
