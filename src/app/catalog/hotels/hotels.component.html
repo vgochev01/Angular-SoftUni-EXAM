@@ -16,7 +16,7 @@
         </ng-template>
         
         <ng-container *ngIf="(hotels$ | async) as hotels; else loading">
-            <span *ngIf="hotels.length == 0">no hotels</span>
+            <span *ngIf="hotels.length == 0" class="no-hotels">There aren't any offers listed in the catalog! Be the first to <a routerLink="/create-offer">create an offer</a>!</span>
 
             <div class="hotels-catalog" *ngIf="hotels.length > 0">
                 <div class="hotel" *ngFor="let hotel of hotels">
