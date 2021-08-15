@@ -2,7 +2,13 @@
     <div class="catalog-container">
         <div class="heading-text-catalog">
             <h1>Planning your vacation?</h1>
-            <span>Explore our hotels catalog</span>
+            <ng-container *ngIf="!inSearch">
+                <span>Explore our hotels catalog</span>
+            </ng-container>
+            
+            <ng-container *ngIf="inSearch">
+                <span class="results-text">Results for "{{searchedDest}}"</span>
+            </ng-container>
         </div>
 
         <ng-template #loading>
@@ -10,7 +16,7 @@
         </ng-template>
         
         <ng-container *ngIf="(hotels$ | async) as hotels; else loading">
-            <app-loader *ngIf="hotels.length == 0"></app-loader>
+            <span *ngIf="hotels.length == 0">no hotels</span>
 
             <div class="hotels-catalog" *ngIf="hotels.length > 0">
                 <div class="hotel" *ngFor="let hotel of hotels">
