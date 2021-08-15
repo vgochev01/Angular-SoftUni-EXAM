@@ -29,22 +29,33 @@
             </form>
         </div>
 
-        <div class="hotels-profile" *ngIf="hotels">
-            <div class="hotel" *ngFor="let hotel of hotels">
-                <div class="hotel-img-container">
-                    <img src="{{hotel.imageUrl}}" alt="Hotel">
-                </div>
-                <div class="hotel-info-container">
-                    <span><h1 class="hotel-name">{{hotel.name}}</h1></span>
-                    <span><i class="fas fa-map-marker-alt hotel-dest-icon"></i>{{hotel.destination}}</span>
-                    <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel.freeRooms}}) Free Rooms</span>
-                    <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel.reviews.length}}) Reviews</span>
-                </div>
-                <div class="hotel-price-container">
-                    <span class="hotel-price"><i class="fas fa-dollar-sign"></i>{{hotel.price}} per night</span>
-                    <span><button [routerLink]="['/hotels', hotel._id]" class="details-btn">Details</button></span>
+        <div class="heading-text-profile">
+            <span class="your-offers">Your offers:</span>
+        </div>
+
+        <ng-template #loading><app-loader></app-loader></ng-template>
+
+        <ng-container *ngIf="(hotels$ | async) as hotels; else loading">
+            <div class="hotels-profile" *ngIf="hotels.length > 0">
+                <div class="hotel" *ngFor="let hotel of hotels">
+                    <div class="hotel-img-container">
+                        <img src="{{hotel.imageUrl}}" alt="Hotel">
+                    </div>
+                    <div class="hotel-info-container">
+                        <span><h1 class="hotel-name">{{hotel.name}}</h1></span>
+                        <span><i class="fas fa-map-marker-alt hotel-dest-icon"></i>{{hotel.destination}}</span>
+                        <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel.freeRooms}}) Free Rooms</span>
+                        <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel.reviews.length}}) Reviews</span>
+                    </div>
+                    <div class="hotel-price-container">
+                        <span class="hotel-price"><i class="fas fa-dollar-sign"></i>{{hotel.price}} per night</span>
+                        <span><button [routerLink]="['/hotels', hotel._id]" class="details-btn">Details</button></span>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="no-hotels" *ngIf="hotels.length == 0">
+                <span>You haven't posted any offer for a hotel yet. Create your first <a routerLink="/create-offer">here</a></span>
+            </div>
+        </ng-container>
     </div>
 </section>

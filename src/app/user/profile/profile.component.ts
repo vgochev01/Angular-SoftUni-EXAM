@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
 import { IHotel, IUser } from 'src/app/shared/interfaces';
@@ -9,12 +11,14 @@ import { IHotel, IUser } from 'src/app/shared/interfaces';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-  hotels: IHotel[] = [];
+  hotels$!: Observable<IHotel[]>;
   editProfileForm!: FormGroup;
 
   submitted: boolean = false;
+
+  editProfileSub$: Subscription | undefined;
 
   constructor(
     private userService: UserService,
@@ -22,17 +26,26 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-    get user(): IUser {
-      return this.userService.user!;
-    }
+  get user(): IUser {
+    return this.userService.user!;
+  }
 
   ngOnInit(): void {
     this.editProfileForm = this.fb.group({
       email: [this.user.email, [Validators.required, Validators.email]],
       username: [this.user.username, [Validators.required, Validators.minLength(4)]]
     })
+
+    this.hotels$ = this.contentService.fetchHotels(this.user._id).pipe(
+      delay(750)
+    );
+
   }
 
+  ngOnDestroy(): void {
+    this.editProfileSub$?.unsubscribe();
+  }
+  
   onSubmit(): void {
     this.submitted = true;
     if(this.editProfileForm!.invalid){
@@ -40,9 +53,9 @@ export class ProfileComponent implements OnInit {
       return;
     }
     const data = this.editProfileForm.value;
-    this.userService.editProfile(data).subscribe({
+    this.editProfileSub$ = this.userService.editProfile(data).subscribe({
       next: () => {
-        alert('User Data Updated!');
+        console.log('User Data Updated!');
       },
       error: (err) => {
         console.error(err.message);

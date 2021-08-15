@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ContentService } from 'src/app/services/content.service';
 import { IHotel } from 'src/app/shared/interfaces';
 
@@ -9,17 +10,16 @@ import { IHotel } from 'src/app/shared/interfaces';
 })
 export class HotelsComponent implements OnInit {
 
-  hotels: IHotel[] | undefined;
+  hotels$!: Observable<IHotel[]>;
 
   constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotels(), 555);
+    setTimeout(() => this.fetchHotels(), 500);
   }
 
-  fetchHotels(): void {
-    this.hotels = undefined;
-    this.contentService.fetchHotels().subscribe(hotels => this.hotels = hotels);
+  fetchHotels() {
+    this.hotels$ = this.contentService.fetchHotels();
   }
 
 }

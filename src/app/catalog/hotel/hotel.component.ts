@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ContentService } from 'src/app/services/content.service';
 import { UserService } from 'src/app/services/user.service';
-import { IHotel, IReview } from 'src/app/shared/interfaces';
+import { IHotel, IReview, IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-hotel',
   templateUrl: './hotel.component.html',
   styleUrls: ['./hotel.component.css']
 })
-export class HotelComponent implements OnInit {
+export class HotelComponent implements OnInit, OnDestroy {
 
   hotel: IHotel | undefined;
   isOwner: boolean = false;
   showDeleteDialog: boolean = false;
   reviews: IReview[] | undefined;
+  hotelsub$: Subscription | undefined;
+
+  showBookedUsers: boolean = false;
 
   constructor(
     private contentService: ContentService,
@@ -24,7 +28,11 @@ export class HotelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => this.fetchHotel(), 0);
+    setTimeout(() => this.fetchHotel(), 500);
+  }
+
+  ngOnDestroy(): void {
+    this.hotelsub$?.unsubscribe();
   }
 
   get isLogged(): boolean {
@@ -32,13 +40,17 @@ export class HotelComponent implements OnInit {
   }
 
   get hasBooked(): boolean {
-    return this.hotel!.usersBooked.includes(this.userService.user?._id);
+    return this.hotel!.usersBooked.find(u => u._id == this.userService.user?._id);
+  }
+
+  get usersBooked(): string | undefined {
+    return this.hotel?.usersBooked.map(u => u.username).join(', ');
   }
 
   fetchHotel(): void {
     this.hotel = undefined;
     const { id } = this.activatedRoute.snapshot.params;
-    this.contentService.fetchHotelById(id).subscribe({
+    this.hotelsub$ = this.contentService.fetchHotelById(id).subscribe({
       next: (hotel) => {
         this.hotel = hotel;
         this.reviews = hotel.reviews;
@@ -69,6 +81,10 @@ export class HotelComponent implements OnInit {
 
   updateHotel(data: IHotel) {
     this.hotel = data;
+  }
+
+  showBookedUsersToggle() {
+    this.showBookedUsers = !this.showBookedUsers;
   }
 
 }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { UserService } from '../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   submitted: boolean = false;
   loginForm!: FormGroup;
   serverErr: string | undefined = undefined;
   redirectTo: string | undefined;
+
+  loginsub$: Subscription | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -33,6 +36,10 @@ export class LoginComponent implements OnInit {
       this.redirectTo = redirectTo;
     }
   }
+  
+  ngOnDestroy(): void {
+    this.loginsub$?.unsubscribe();
+  }
 
   onSubmit(): void {
     this.submitted = true;
@@ -40,7 +47,7 @@ export class LoginComponent implements OnInit {
       setTimeout(() => this.submitted = false, 2000);
       return;
     }
-    this.userService.login(this.loginForm.value).subscribe({
+    this.loginsub$ = this.userService.login(this.loginForm.value).subscribe({
       next: () => {
         this.router.navigate([(`/${this.redirectTo || ''}` || '/home')]);
       },

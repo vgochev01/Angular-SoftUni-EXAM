@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 import { passMatchingFactory } from './passwords-match.directive';
 
@@ -13,6 +14,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   submitted: boolean = false;
   registerForm!: FormGroup;
   serverErr: string | undefined = undefined;
+
+  registersub$: Subscription | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +34,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.registersub$?.unsubscribe();
   }
 
   onSubmit(): void {
@@ -39,7 +43,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       setTimeout(() => this.submitted = false, 2000)
       return;
     }
-    this.userService.register(this.registerForm.value).subscribe({
+    this.registersub$ = this.userService.register(this.registerForm.value).subscribe({
       next: () => {
         this.router.navigate(['/home']);
       },

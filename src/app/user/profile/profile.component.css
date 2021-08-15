@@ -224,3 +224,17 @@ section#profile {
     display: block;
     transition: 1s ease-in;
   }
+
+  span.your-offers {
+    color: white;
+  }
+
+  .no-hotels {
+    margin: 20px 0 30px 0;
+  }
+
+  .no-hotels a {
+    text-decoration: none;
+    cursor: pointer;
+    color:rgb(239, 73, 73);
+  }

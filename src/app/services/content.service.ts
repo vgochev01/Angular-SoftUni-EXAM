@@ -8,8 +8,9 @@ export class ContentService {
 
   constructor(private http: HttpClient) { }
 
-  fetchHotels() {
-    return this.http.get<IHotel[]>(`api/data/catalog`);
+  fetchHotels(userId: string | undefined = undefined) {
+    const query = userId ? `?owner=${userId}` : '';
+    return this.http.get<IHotel[]>(`api/data/catalog${query}`);
   }
 
   fetchHotelById(id: string) {

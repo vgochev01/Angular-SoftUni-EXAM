@@ -79,6 +79,7 @@ form button {
 .review {
   width: 90%;
   margin-top: 15px;
+  padding: 10px;
   background: rgba(245, 245, 245, 0.1);
 }
 

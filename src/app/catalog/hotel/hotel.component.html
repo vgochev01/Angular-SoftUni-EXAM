@@ -37,7 +37,13 @@
                             <span *ngIf="isLogged && hasBooked">You have booked a room in this hotel!</span>
                             <span *ngIf="!isLogged">Please <a class="notLogged" routerLink="/login">sign in</a> to book a room in this hotel!</span>
                             <button (click)="bookRoom()" *ngIf="isLogged && !hasBooked && !isOwner" class="bookBtn">Book a Room!</button>
-                            <a class="whoBooked" *ngIf="isLogged && isOwner" href="javascript:void(0)">Who has booked a room in my hotel?</a>
+                            <ng-container *ngIf="isLogged && isOwner">
+                                <div class="usersbooked">
+                                    <a class="whoBooked" (click)="showBookedUsersToggle()">Who has booked a room in my hotel?</a>
+                                    <span *ngIf="showBookedUsers && usersBooked">{{usersBooked}}</span>
+                                    <span *ngIf="showBookedUsers && !usersBooked">No one has booked a room in your hotel!</span>
+                                </div>
+                            </ng-container>
                         </div>
                     </div>
                 </div>

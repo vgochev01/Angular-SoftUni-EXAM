@@ -221,6 +221,7 @@ section#details button:active {
   color: white;
   border-radius: 11px;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .whoBooked:hover {
@@ -244,4 +245,15 @@ section#details button:active {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.usersbooked {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.usersbooked span {
+  margin-top: 10px;
 }
