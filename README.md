@@ -21,4 +21,6 @@ Users can see all their own hotel listings.
 Application communicates to a REST API which I have personally written in Node.JS + Express. 
 MongoDB with Mongoose is used for storing data.
 
+[-> REST API Repository](https://github.com/vgochev01/AngularExamRestApi)
+
 
