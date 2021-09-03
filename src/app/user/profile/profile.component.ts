@@ -14,6 +14,7 @@ import { IHotel, IUser } from 'src/app/shared/interfaces';
 export class ProfileComponent implements OnInit, OnDestroy {
 
   hotels$!: Observable<IHotel[]>;
+  hotelsBooked$!: Observable<IHotel[]>;
   editProfileForm!: FormGroup;
 
   submitted: boolean = false;
@@ -40,6 +41,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       delay(500)
     );
 
+    this.hotelsBooked$ = this.contentService.fetchBookedHotels().pipe(
+      delay(500)
+    )
   }
 
   ngOnDestroy(): void {

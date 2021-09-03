@@ -57,5 +57,32 @@
                 <span>You haven't posted any offer for a hotel yet. Create your first <a routerLink="/create-offer">here</a></span>
             </div>
         </ng-container>
+
+        <div class="heading-text-profile" style="margin-top: 0;">
+            <span class="your-offers">Hotels You Have Booked:</span>
+        </div>
+
+        <ng-container *ngIf="(hotelsBooked$ | async) as hotels; else loading">
+            <div class="hotels-profile" *ngIf="hotels.length > 0">
+                <div class="hotel" *ngFor="let hotel of hotels">
+                    <div class="hotel-img-container">
+                        <img src="{{hotel.imageUrl}}" alt="Hotel">
+                    </div>
+                    <div class="hotel-info-container">
+                        <span><h1 class="hotel-name">{{hotel.name}}</h1></span>
+                        <span><i class="fas fa-map-marker-alt hotel-dest-icon"></i>{{hotel.destination}}</span>
+                        <span><i class="fas fa-bed hotel-rooms-icon"></i>({{hotel.freeRooms}}) Free Rooms</span>
+                        <span><i class="fas fa-star hotel-reviews-icon"></i>({{hotel.reviews.length}}) Reviews</span>
+                    </div>
+                    <div class="hotel-price-container">
+                        <span class="hotel-price"><i class="fas fa-dollar-sign"></i>{{hotel.price}} per night</span>
+                        <span><button [routerLink]="['/hotels', hotel._id]" class="details-btn">Details</button></span>
+                    </div>
+                </div>
+            </div>
+            <div class="no-hotels" *ngIf="hotels.length == 0">
+                <span>You haven't booked a room in any hotel yet! Explore our <a routerLink="/hotels">catalog</a></span>
+            </div>
+        </ng-container>
     </div>
 </section>

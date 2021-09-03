@@ -23,6 +23,10 @@ export class ContentService {
     return this.http.get<IHotel>(`api/data/catalog/${id}`);
   }
 
+  fetchBookedHotels() {
+    return this.http.get<IHotel[]>(`api/users/booked`);
+  }
+
   createHotel(data: IHotel) {
     return this.http.post<IHotel>(`api/data/catalog`, data);
   }
